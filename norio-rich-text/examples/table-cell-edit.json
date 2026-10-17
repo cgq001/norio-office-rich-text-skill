@@ -1,0 +1,10 @@
+{
+  "protocolVersion": 1,
+  "documentId": "host-document-id",
+  "requestId": "host-request-id",
+  "contextId": "host-context-id",
+  "baseRevision": 0,
+  "operations": [
+    { "type": "tableOperation", "targetRef": "host-cell-ref", "action": "setCellBackground", "value": "#eaf2ff" }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "type": "doc",
+  "content": [
+    { "type": "localFileBlock", "attrs": { "assetId": "file1", "url": "asset:file1", "name": "sample-attachment.txt", "mimeType": "text/plain" } }
+  ]
+}

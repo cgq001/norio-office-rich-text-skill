@@ -1,0 +1,8 @@
+{
+  "type": "doc",
+  "content": [
+    { "type": "imageBlock", "attrs": { "images": [{ "assetId": "example-image", "src": "https://example.com/image.png" }] } },
+    { "type": "videoBlock", "attrs": { "assetId": "example-video", "src": "https://example.com/video.mp4", "name": "Example video", "mimeType": "video/mp4" } },
+    { "type": "localFileBlock", "attrs": { "assetId": "example-file", "url": "https://example.com/report.pdf", "name": "report.pdf", "mimeType": "application/pdf" } }
+  ]
+}

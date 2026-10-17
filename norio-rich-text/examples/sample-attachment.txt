@@ -1,0 +1,1 @@
+This is a local attachment used to test Nordox embedding.

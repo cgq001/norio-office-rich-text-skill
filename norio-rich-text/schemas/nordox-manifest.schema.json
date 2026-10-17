@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://norio-office.github.io/rich-text/nordox-manifest.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "format",
+    "formatVersion",
+    "schemaVersion",
+    "title",
+    "assetPackaging",
+    "resources"
+  ],
+  "properties": {
+    "format": {
+      "const": "nordox"
+    },
+    "formatVersion": {
+      "const": 1
+    },
+    "schemaVersion": {
+      "type": "string",
+      "minLength": 1
+    },
+    "title": {
+      "type": "string"
+    },
+    "assetPackaging": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "images",
+        "videos",
+        "files"
+      ],
+      "properties": {
+        "images": {
+          "enum": [
+            "embed",
+            "reference"
+          ]
+        },
+        "videos": {
+          "enum": [
+            "embed",
+            "reference"
+          ]
+        },
+        "files": {
+          "enum": [
+            "embed",
+            "reference"
+          ]
+        }
+      }
+    },
+    "resources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "kind",
+          "storage"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-zA-Z0-9_-]{1,128}$"
+          },
+          "kind": {
+            "enum": [
+              "image",
+              "video",
+              "file"
+            ]
+          },
+          "storage": {
+            "enum": [
+              "embedded",
+              "external"
+            ]
+          },
+          "path": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string"
+          },
+          "mimeType": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "byteLength": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      }
+    }
+  }
+}

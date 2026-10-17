@@ -1,0 +1,3 @@
+{"protocolVersion":1,"streamId":"example-replace","seq":1,"type":"text.delta","payload":{"nodeRef":"replacement","text":"Revised "}}
+{"protocolVersion":1,"streamId":"example-replace","seq":2,"type":"text.delta","payload":{"nodeRef":"replacement","text":"selected text"}}
+{"protocolVersion":1,"streamId":"example-replace","seq":3,"type":"stream.end","payload":{}}

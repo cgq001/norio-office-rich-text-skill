@@ -1,0 +1,7 @@
+{
+  "file1": {
+    "path": "examples/sample-attachment.txt",
+    "mimeType": "text/plain",
+    "name": "sample-attachment.txt"
+  }
+}

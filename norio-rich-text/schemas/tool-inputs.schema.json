@@ -1,0 +1,6028 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://norio-office.github.io/rich-text/tool-inputs.schema.json",
+  "$defs": {
+    "richtext_get_capabilities": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "richtext_create_document": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "document": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "$id": "https://norio-office.github.io/rich-text/ai-created-document.schema.json",
+          "title": "Norio AI-created rich text document",
+          "$ref": "#/$defs/new_node_doc",
+          "$defs": {
+            "mark_link": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "link"
+                },
+                "attrs": {
+                  "type": "object",
+                  "properties": {
+                    "href": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "target": {
+                      "type": "string"
+                    },
+                    "rel": {
+                      "type": "string"
+                    },
+                    "class": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "title": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "mark_textStyle": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "textStyle"
+                },
+                "attrs": {
+                  "type": "object",
+                  "properties": {
+                    "fontFamily": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "fontSize": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "pattern": "^\\d{1,3}px$"
+                    },
+                    "backgroundColor": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "maxLength": 80,
+                      "pattern": "^(?:#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})|rgba?\\([\\d.%\\s,/]+\\)|[a-zA-Z]+)$"
+                    },
+                    "color": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "maxLength": 80,
+                      "pattern": "^(?:#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})|rgba?\\([\\d.%\\s,/]+\\)|[a-zA-Z]+)$"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "mark_bold": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "bold"
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "mark_code": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "code"
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "mark_italic": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "italic"
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "mark_strike": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "strike"
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "mark_commentMark": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "commentMark"
+                },
+                "attrs": {
+                  "type": "object",
+                  "properties": {
+                    "threadId": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "mark_superscript": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "superscript"
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "mark_subscript": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "subscript"
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "mark_underline": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "underline"
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "node_paragraph": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "paragraph"
+                },
+                "attrs": {
+                  "type": "object",
+                  "properties": {
+                    "aiId": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "indent": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 8
+                    },
+                    "textAlign": {
+                      "enum": [
+                        "left",
+                        "center",
+                        "right",
+                        null
+                      ]
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "content": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/node"
+                  }
+                },
+                "marks": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/mark"
+                  }
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "node_blockquote": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "blockquote"
+                },
+                "attrs": {
+                  "type": "object",
+                  "properties": {
+                    "aiId": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "quoteBorderColor": {
+                      "type": "string",
+                      "maxLength": 80,
+                      "pattern": "^(?:#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})|rgba?\\([\\d.%\\s,/]+\\)|[a-zA-Z]+)$"
+                    },
+                    "quoteBackgroundColor": {
+                      "type": "string",
+                      "maxLength": 80,
+                      "pattern": "^(?:#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})|rgba?\\([\\d.%\\s,/]+\\)|[a-zA-Z]+)$"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "content": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/node"
+                  }
+                },
+                "marks": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/mark"
+                  }
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "node_bulletList": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "bulletList"
+                },
+                "attrs": {
+                  "type": "object",
+                  "properties": {
+                    "aiId": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "content": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/node"
+                  }
+                },
+                "marks": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/mark"
+                  }
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "node_doc": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "doc"
+                },
+                "content": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/node"
+                  }
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "node_hardBreak": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "hardBreak"
+                },
+                "marks": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/mark"
+                  }
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "node_heading": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "heading"
+                },
+                "attrs": {
+                  "type": "object",
+                  "properties": {
+                    "aiId": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "indent": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 8
+                    },
+                    "textAlign": {
+                      "enum": [
+                        "left",
+                        "center",
+                        "right",
+                        null
+                      ]
+                    },
+                    "level": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 6
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "content": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/node"
+                  }
+                },
+                "marks": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/mark"
+                  }
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "node_listItem": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "listItem"
+                },
+                "attrs": {
+                  "type": "object",
+                  "properties": {
+                    "aiId": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "content": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/node"
+                  }
+                },
+                "marks": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/mark"
+                  }
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "node_orderedList": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "orderedList"
+                },
+                "attrs": {
+                  "type": "object",
+                  "properties": {
+                    "aiId": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "start": {
+                      "type": "integer",
+                      "minimum": 1
+                    },
+                    "type": {
+                      "enum": [
+                        "1",
+                        "a",
+                        "A",
+                        "i",
+                        "I",
+                        null
+                      ]
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "content": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/node"
+                  }
+                },
+                "marks": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/mark"
+                  }
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "node_text": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "text"
+                },
+                "text": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "marks": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/mark"
+                  }
+                }
+              },
+              "required": [
+                "type",
+                "text"
+              ],
+              "additionalProperties": false
+            },
+            "node_table": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "table"
+                },
+                "attrs": {
+                  "type": "object",
+                  "properties": {
+                    "aiId": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "tableTheme": {
+                      "anyOf": [
+                        {
+                          "type": "null"
+                        },
+                        {
+                          "type": "object",
+                          "required": [
+                            "header",
+                            "odd",
+                            "even"
+                          ],
+                          "additionalProperties": false,
+                          "properties": {
+                            "header": {
+                              "type": "string",
+                              "pattern": "^#[0-9a-fA-F]{6}$"
+                            },
+                            "odd": {
+                              "type": "string",
+                              "pattern": "^#[0-9a-fA-F]{6}$"
+                            },
+                            "even": {
+                              "type": "string",
+                              "pattern": "^#[0-9a-fA-F]{6}$"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "content": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/node"
+                  }
+                },
+                "marks": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/mark"
+                  }
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "node_tableRow": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "tableRow"
+                },
+                "attrs": {
+                  "type": "object",
+                  "properties": {
+                    "aiId": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "content": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/node"
+                  }
+                },
+                "marks": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/mark"
+                  }
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "node_tableHeader": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "tableHeader"
+                },
+                "attrs": {
+                  "type": "object",
+                  "properties": {
+                    "aiId": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "colspan": {
+                      "type": "integer",
+                      "minimum": 1
+                    },
+                    "rowspan": {
+                      "type": "integer",
+                      "minimum": 1
+                    },
+                    "colwidth": {
+                      "type": [
+                        "array",
+                        "null"
+                      ],
+                      "items": {
+                        "type": "integer",
+                        "minimum": 1
+                      },
+                      "minItems": 1
+                    },
+                    "align": {
+                      "enum": [
+                        "left",
+                        "center",
+                        "right",
+                        null
+                      ]
+                    },
+                    "backgroundColor": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "maxLength": 80,
+                      "pattern": "^(?:#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})|rgba?\\([\\d.%\\s,/]+\\)|[a-zA-Z]+)$"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "content": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/node"
+                  }
+                },
+                "marks": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/mark"
+                  }
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "node_tableCell": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "tableCell"
+                },
+                "attrs": {
+                  "type": "object",
+                  "properties": {
+                    "aiId": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "colspan": {
+                      "type": "integer",
+                      "minimum": 1
+                    },
+                    "rowspan": {
+                      "type": "integer",
+                      "minimum": 1
+                    },
+                    "colwidth": {
+                      "type": [
+                        "array",
+                        "null"
+                      ],
+                      "items": {
+                        "type": "integer",
+                        "minimum": 1
+                      },
+                      "minItems": 1
+                    },
+                    "align": {
+                      "enum": [
+                        "left",
+                        "center",
+                        "right",
+                        null
+                      ]
+                    },
+                    "backgroundColor": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "maxLength": 80,
+                      "pattern": "^(?:#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})|rgba?\\([\\d.%\\s,/]+\\)|[a-zA-Z]+)$"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "content": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/node"
+                  }
+                },
+                "marks": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/mark"
+                  }
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "node_horizontalRule": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "horizontalRule"
+                },
+                "attrs": {
+                  "type": "object",
+                  "properties": {
+                    "aiId": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "lineStyle": {
+                      "enum": [
+                        "solid",
+                        "dashed",
+                        "dotted"
+                      ]
+                    },
+                    "lineColor": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "maxLength": 80,
+                      "pattern": "^(?:#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})|rgba?\\([\\d.%\\s,/]+\\)|[a-zA-Z]+)$"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "marks": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/mark"
+                  }
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "node_columnsBlock": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "columnsBlock"
+                },
+                "attrs": {
+                  "type": "object",
+                  "properties": {
+                    "aiId": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "widths": {
+                      "type": "array",
+                      "items": {
+                        "type": "number",
+                        "exclusiveMinimum": 0
+                      }
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "content": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/node"
+                  }
+                },
+                "marks": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/mark"
+                  }
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "node_columnsColumn": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "columnsColumn"
+                },
+                "attrs": {
+                  "type": "object",
+                  "properties": {
+                    "aiId": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "content": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/node"
+                  }
+                },
+                "marks": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/mark"
+                  }
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "node_countdownBlock": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "countdownBlock"
+                },
+                "attrs": {
+                  "type": "object",
+                  "properties": {
+                    "aiId": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "targetTimestamp": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "mode": {
+                      "type": "string"
+                    },
+                    "color": {
+                      "type": "string",
+                      "maxLength": 80,
+                      "pattern": "^(?:#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})|rgba?\\([\\d.%\\s,/]+\\)|[a-zA-Z]+)$"
+                    },
+                    "reminderEnabled": {
+                      "type": "boolean"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "marks": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/mark"
+                  }
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "node_formulaBlock": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "formulaBlock"
+                },
+                "attrs": {
+                  "type": "object",
+                  "properties": {
+                    "aiId": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "latex": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "marks": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/mark"
+                  }
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "node_imageBlock": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "imageBlock"
+                },
+                "attrs": {
+                  "type": "object",
+                  "properties": {
+                    "aiId": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "images": {
+                      "type": "array",
+                      "maxItems": 4,
+                      "items": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "assetId": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "src": {
+                            "type": "string"
+                          },
+                          "alt": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "description": {
+                            "type": "string"
+                          },
+                          "descriptionVisible": {
+                            "type": "boolean"
+                          },
+                          "link": {
+                            "type": "string"
+                          },
+                          "linkTarget": {
+                            "enum": [
+                              "_blank",
+                              "_self"
+                            ]
+                          },
+                          "rotation": {
+                            "type": "number"
+                          }
+                        }
+                      }
+                    },
+                    "widthPercent": {
+                      "type": "number",
+                      "exclusiveMinimum": 0,
+                      "maximum": 100
+                    },
+                    "align": {
+                      "enum": [
+                        "left",
+                        "center",
+                        "right"
+                      ]
+                    },
+                    "height": {
+                      "type": "integer",
+                      "minimum": 0
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "marks": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/mark"
+                  }
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "node_linkBlock": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "linkBlock"
+                },
+                "attrs": {
+                  "type": "object",
+                  "properties": {
+                    "aiId": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "url": {
+                      "type": "string"
+                    },
+                    "displayMode": {
+                      "enum": [
+                        "text",
+                        "card",
+                        "preview"
+                      ]
+                    },
+                    "align": {
+                      "enum": [
+                        "left",
+                        "center",
+                        "right"
+                      ]
+                    },
+                    "widthPercent": {
+                      "type": "number",
+                      "exclusiveMinimum": 0,
+                      "maximum": 100
+                    },
+                    "height": {
+                      "type": "integer",
+                      "minimum": 0
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "marks": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/mark"
+                  }
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "node_localFileBlock": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "localFileBlock"
+                },
+                "attrs": {
+                  "type": "object",
+                  "properties": {
+                    "aiId": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "assetId": {
+                      "type": "string"
+                    },
+                    "url": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "size": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "mimeType": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "marks": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/mark"
+                  }
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "node_mention": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "mention"
+                },
+                "attrs": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "type": "number"
+                    },
+                    "avatar": {
+                      "type": "string"
+                    },
+                    "icon": {
+                      "type": "string"
+                    },
+                    "tag": {
+                      "type": "string"
+                    },
+                    "updatedAt": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "marks": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/mark"
+                  }
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "node_videoBlock": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "videoBlock"
+                },
+                "attrs": {
+                  "type": "object",
+                  "properties": {
+                    "aiId": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "assetId": {
+                      "type": "string"
+                    },
+                    "src": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "mimeType": {
+                      "type": "string"
+                    },
+                    "align": {
+                      "enum": [
+                        "left",
+                        "center",
+                        "right"
+                      ]
+                    },
+                    "widthPercent": {
+                      "type": "number",
+                      "exclusiveMinimum": 0,
+                      "maximum": 100
+                    },
+                    "height": {
+                      "type": "integer",
+                      "minimum": 0
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "marks": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/mark"
+                  }
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "node_codeBlock": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "codeBlock"
+                },
+                "attrs": {
+                  "type": "object",
+                  "properties": {
+                    "aiId": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "language": {
+                      "type": "string"
+                    },
+                    "wrapLines": {
+                      "type": "boolean"
+                    },
+                    "darkTheme": {
+                      "type": "boolean"
+                    },
+                    "fixedHeight": {
+                      "type": "boolean"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "content": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/node"
+                  }
+                },
+                "marks": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/mark"
+                  }
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "node_highlightBlock": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "highlightBlock"
+                },
+                "attrs": {
+                  "type": "object",
+                  "properties": {
+                    "aiId": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "titleEnabled": {
+                      "type": "boolean"
+                    },
+                    "emojiEnabled": {
+                      "type": "boolean"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "emoji": {
+                      "type": "string"
+                    },
+                    "borderColor": {
+                      "type": "string",
+                      "maxLength": 80,
+                      "pattern": "^(?:#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})|rgba?\\([\\d.%\\s,/]+\\)|[a-zA-Z]+)$"
+                    },
+                    "backgroundColor": {
+                      "type": "string",
+                      "maxLength": 80,
+                      "pattern": "^(?:#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})|rgba?\\([\\d.%\\s,/]+\\)|[a-zA-Z]+)$"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "content": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/node"
+                  }
+                },
+                "marks": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/mark"
+                  }
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "node_taskList": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "taskList"
+                },
+                "attrs": {
+                  "type": "object",
+                  "properties": {
+                    "aiId": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "content": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/node"
+                  }
+                },
+                "marks": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/mark"
+                  }
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "node_taskItem": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "taskItem"
+                },
+                "attrs": {
+                  "type": "object",
+                  "properties": {
+                    "aiId": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "checked": {
+                      "type": "boolean"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "content": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/node"
+                  }
+                },
+                "marks": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/mark"
+                  }
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "node": {
+              "oneOf": [
+                {
+                  "$ref": "#/$defs/node_paragraph"
+                },
+                {
+                  "$ref": "#/$defs/node_blockquote"
+                },
+                {
+                  "$ref": "#/$defs/node_bulletList"
+                },
+                {
+                  "$ref": "#/$defs/node_doc"
+                },
+                {
+                  "$ref": "#/$defs/node_hardBreak"
+                },
+                {
+                  "$ref": "#/$defs/node_heading"
+                },
+                {
+                  "$ref": "#/$defs/node_listItem"
+                },
+                {
+                  "$ref": "#/$defs/node_orderedList"
+                },
+                {
+                  "$ref": "#/$defs/node_text"
+                },
+                {
+                  "$ref": "#/$defs/node_table"
+                },
+                {
+                  "$ref": "#/$defs/node_tableRow"
+                },
+                {
+                  "$ref": "#/$defs/node_tableHeader"
+                },
+                {
+                  "$ref": "#/$defs/node_tableCell"
+                },
+                {
+                  "$ref": "#/$defs/node_horizontalRule"
+                },
+                {
+                  "$ref": "#/$defs/node_columnsBlock"
+                },
+                {
+                  "$ref": "#/$defs/node_columnsColumn"
+                },
+                {
+                  "$ref": "#/$defs/node_countdownBlock"
+                },
+                {
+                  "$ref": "#/$defs/node_formulaBlock"
+                },
+                {
+                  "$ref": "#/$defs/node_imageBlock"
+                },
+                {
+                  "$ref": "#/$defs/node_linkBlock"
+                },
+                {
+                  "$ref": "#/$defs/node_localFileBlock"
+                },
+                {
+                  "$ref": "#/$defs/node_mention"
+                },
+                {
+                  "$ref": "#/$defs/node_videoBlock"
+                },
+                {
+                  "$ref": "#/$defs/node_codeBlock"
+                },
+                {
+                  "$ref": "#/$defs/node_highlightBlock"
+                },
+                {
+                  "$ref": "#/$defs/node_taskList"
+                },
+                {
+                  "$ref": "#/$defs/node_taskItem"
+                }
+              ]
+            },
+            "mark": {
+              "oneOf": [
+                {
+                  "$ref": "#/$defs/mark_link"
+                },
+                {
+                  "$ref": "#/$defs/mark_textStyle"
+                },
+                {
+                  "$ref": "#/$defs/mark_bold"
+                },
+                {
+                  "$ref": "#/$defs/mark_code"
+                },
+                {
+                  "$ref": "#/$defs/mark_italic"
+                },
+                {
+                  "$ref": "#/$defs/mark_strike"
+                },
+                {
+                  "$ref": "#/$defs/mark_commentMark"
+                },
+                {
+                  "$ref": "#/$defs/mark_superscript"
+                },
+                {
+                  "$ref": "#/$defs/mark_subscript"
+                },
+                {
+                  "$ref": "#/$defs/mark_underline"
+                }
+              ]
+            },
+            "new_node_paragraph": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "paragraph"
+                },
+                "attrs": {
+                  "type": "object",
+                  "properties": {
+                    "indent": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 8
+                    },
+                    "textAlign": {
+                      "enum": [
+                        "left",
+                        "center",
+                        "right",
+                        null
+                      ]
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "content": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/new_node"
+                  }
+                },
+                "marks": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/mark"
+                  }
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "new_node_blockquote": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "blockquote"
+                },
+                "attrs": {
+                  "type": "object",
+                  "properties": {
+                    "quoteBorderColor": {
+                      "type": "string",
+                      "maxLength": 80,
+                      "pattern": "^(?:#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})|rgba?\\([\\d.%\\s,/]+\\)|[a-zA-Z]+)$"
+                    },
+                    "quoteBackgroundColor": {
+                      "type": "string",
+                      "maxLength": 80,
+                      "pattern": "^(?:#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})|rgba?\\([\\d.%\\s,/]+\\)|[a-zA-Z]+)$"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "content": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/new_node"
+                  }
+                },
+                "marks": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/mark"
+                  }
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "new_node_bulletList": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "bulletList"
+                },
+                "attrs": {
+                  "type": "object",
+                  "properties": {},
+                  "additionalProperties": false
+                },
+                "content": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/new_node"
+                  }
+                },
+                "marks": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/mark"
+                  }
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "new_node_doc": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "doc"
+                },
+                "content": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/new_node"
+                  }
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "new_node_hardBreak": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "hardBreak"
+                },
+                "marks": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/mark"
+                  }
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "new_node_heading": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "heading"
+                },
+                "attrs": {
+                  "type": "object",
+                  "properties": {
+                    "indent": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 8
+                    },
+                    "textAlign": {
+                      "enum": [
+                        "left",
+                        "center",
+                        "right",
+                        null
+                      ]
+                    },
+                    "level": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 6
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "content": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/new_node"
+                  }
+                },
+                "marks": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/mark"
+                  }
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "new_node_listItem": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "listItem"
+                },
+                "attrs": {
+                  "type": "object",
+                  "properties": {},
+                  "additionalProperties": false
+                },
+                "content": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/new_node"
+                  }
+                },
+                "marks": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/mark"
+                  }
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "new_node_orderedList": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "orderedList"
+                },
+                "attrs": {
+                  "type": "object",
+                  "properties": {
+                    "start": {
+                      "type": "integer",
+                      "minimum": 1
+                    },
+                    "type": {
+                      "enum": [
+                        "1",
+                        "a",
+                        "A",
+                        "i",
+                        "I",
+                        null
+                      ]
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "content": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/new_node"
+                  }
+                },
+                "marks": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/mark"
+                  }
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "new_node_text": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "text"
+                },
+                "text": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "marks": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/mark"
+                  }
+                }
+              },
+              "required": [
+                "type",
+                "text"
+              ],
+              "additionalProperties": false
+            },
+            "new_node_table": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "table"
+                },
+                "attrs": {
+                  "type": "object",
+                  "properties": {
+                    "tableTheme": {
+                      "anyOf": [
+                        {
+                          "type": "null"
+                        },
+                        {
+                          "type": "object",
+                          "required": [
+                            "header",
+                            "odd",
+                            "even"
+                          ],
+                          "additionalProperties": false,
+                          "properties": {
+                            "header": {
+                              "type": "string",
+                              "pattern": "^#[0-9a-fA-F]{6}$"
+                            },
+                            "odd": {
+                              "type": "string",
+                              "pattern": "^#[0-9a-fA-F]{6}$"
+                            },
+                            "even": {
+                              "type": "string",
+                              "pattern": "^#[0-9a-fA-F]{6}$"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "content": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/new_node"
+                  }
+                },
+                "marks": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/mark"
+                  }
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "new_node_tableRow": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "tableRow"
+                },
+                "attrs": {
+                  "type": "object",
+                  "properties": {},
+                  "additionalProperties": false
+                },
+                "content": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/new_node"
+                  }
+                },
+                "marks": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/mark"
+                  }
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "new_node_tableHeader": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "tableHeader"
+                },
+                "attrs": {
+                  "type": "object",
+                  "properties": {
+                    "colspan": {
+                      "type": "integer",
+                      "minimum": 1
+                    },
+                    "rowspan": {
+                      "type": "integer",
+                      "minimum": 1
+                    },
+                    "colwidth": {
+                      "type": [
+                        "array",
+                        "null"
+                      ],
+                      "items": {
+                        "type": "integer",
+                        "minimum": 1
+                      },
+                      "minItems": 1
+                    },
+                    "align": {
+                      "enum": [
+                        "left",
+                        "center",
+                        "right",
+                        null
+                      ]
+                    },
+                    "backgroundColor": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "maxLength": 80,
+                      "pattern": "^(?:#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})|rgba?\\([\\d.%\\s,/]+\\)|[a-zA-Z]+)$"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "content": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/new_node"
+                  }
+                },
+                "marks": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/mark"
+                  }
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "new_node_tableCell": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "tableCell"
+                },
+                "attrs": {
+                  "type": "object",
+                  "properties": {
+                    "colspan": {
+                      "type": "integer",
+                      "minimum": 1
+                    },
+                    "rowspan": {
+                      "type": "integer",
+                      "minimum": 1
+                    },
+                    "colwidth": {
+                      "type": [
+                        "array",
+                        "null"
+                      ],
+                      "items": {
+                        "type": "integer",
+                        "minimum": 1
+                      },
+                      "minItems": 1
+                    },
+                    "align": {
+                      "enum": [
+                        "left",
+                        "center",
+                        "right",
+                        null
+                      ]
+                    },
+                    "backgroundColor": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "maxLength": 80,
+                      "pattern": "^(?:#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})|rgba?\\([\\d.%\\s,/]+\\)|[a-zA-Z]+)$"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "content": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/new_node"
+                  }
+                },
+                "marks": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/mark"
+                  }
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "new_node_horizontalRule": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "horizontalRule"
+                },
+                "attrs": {
+                  "type": "object",
+                  "properties": {
+                    "lineStyle": {
+                      "enum": [
+                        "solid",
+                        "dashed",
+                        "dotted"
+                      ]
+                    },
+                    "lineColor": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "maxLength": 80,
+                      "pattern": "^(?:#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})|rgba?\\([\\d.%\\s,/]+\\)|[a-zA-Z]+)$"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "marks": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/mark"
+                  }
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "new_node_columnsBlock": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "columnsBlock"
+                },
+                "attrs": {
+                  "type": "object",
+                  "properties": {
+                    "widths": {
+                      "type": "array",
+                      "items": {
+                        "type": "number",
+                        "exclusiveMinimum": 0
+                      }
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "content": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/new_node"
+                  }
+                },
+                "marks": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/mark"
+                  }
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "new_node_columnsColumn": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "columnsColumn"
+                },
+                "attrs": {
+                  "type": "object",
+                  "properties": {},
+                  "additionalProperties": false
+                },
+                "content": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/new_node"
+                  }
+                },
+                "marks": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/mark"
+                  }
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "new_node_countdownBlock": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "countdownBlock"
+                },
+                "attrs": {
+                  "type": "object",
+                  "properties": {
+                    "targetTimestamp": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "mode": {
+                      "type": "string"
+                    },
+                    "color": {
+                      "type": "string",
+                      "maxLength": 80,
+                      "pattern": "^(?:#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})|rgba?\\([\\d.%\\s,/]+\\)|[a-zA-Z]+)$"
+                    },
+                    "reminderEnabled": {
+                      "type": "boolean"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "marks": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/mark"
+                  }
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "new_node_formulaBlock": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "formulaBlock"
+                },
+                "attrs": {
+                  "type": "object",
+                  "properties": {
+                    "latex": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "marks": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/mark"
+                  }
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "new_node_imageBlock": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "imageBlock"
+                },
+                "attrs": {
+                  "type": "object",
+                  "properties": {
+                    "images": {
+                      "type": "array",
+                      "maxItems": 4,
+                      "items": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "assetId": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "src": {
+                            "type": "string"
+                          },
+                          "alt": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "description": {
+                            "type": "string"
+                          },
+                          "descriptionVisible": {
+                            "type": "boolean"
+                          },
+                          "link": {
+                            "type": "string"
+                          },
+                          "linkTarget": {
+                            "enum": [
+                              "_blank",
+                              "_self"
+                            ]
+                          },
+                          "rotation": {
+                            "type": "number"
+                          }
+                        }
+                      }
+                    },
+                    "widthPercent": {
+                      "type": "number",
+                      "exclusiveMinimum": 0,
+                      "maximum": 100
+                    },
+                    "align": {
+                      "enum": [
+                        "left",
+                        "center",
+                        "right"
+                      ]
+                    },
+                    "height": {
+                      "type": "integer",
+                      "minimum": 0
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "marks": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/mark"
+                  }
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "new_node_linkBlock": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "linkBlock"
+                },
+                "attrs": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string"
+                    },
+                    "url": {
+                      "type": "string"
+                    },
+                    "displayMode": {
+                      "enum": [
+                        "text",
+                        "card",
+                        "preview"
+                      ]
+                    },
+                    "align": {
+                      "enum": [
+                        "left",
+                        "center",
+                        "right"
+                      ]
+                    },
+                    "widthPercent": {
+                      "type": "number",
+                      "exclusiveMinimum": 0,
+                      "maximum": 100
+                    },
+                    "height": {
+                      "type": "integer",
+                      "minimum": 0
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "marks": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/mark"
+                  }
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "new_node_localFileBlock": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "localFileBlock"
+                },
+                "attrs": {
+                  "type": "object",
+                  "properties": {
+                    "assetId": {
+                      "type": "string"
+                    },
+                    "url": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "size": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "mimeType": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "marks": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/mark"
+                  }
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "new_node_mention": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "mention"
+                },
+                "attrs": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "type": "number"
+                    },
+                    "avatar": {
+                      "type": "string"
+                    },
+                    "icon": {
+                      "type": "string"
+                    },
+                    "tag": {
+                      "type": "string"
+                    },
+                    "updatedAt": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "marks": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/mark"
+                  }
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "new_node_videoBlock": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "videoBlock"
+                },
+                "attrs": {
+                  "type": "object",
+                  "properties": {
+                    "assetId": {
+                      "type": "string"
+                    },
+                    "src": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "mimeType": {
+                      "type": "string"
+                    },
+                    "align": {
+                      "enum": [
+                        "left",
+                        "center",
+                        "right"
+                      ]
+                    },
+                    "widthPercent": {
+                      "type": "number",
+                      "exclusiveMinimum": 0,
+                      "maximum": 100
+                    },
+                    "height": {
+                      "type": "integer",
+                      "minimum": 0
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "marks": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/mark"
+                  }
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "new_node_codeBlock": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "codeBlock"
+                },
+                "attrs": {
+                  "type": "object",
+                  "properties": {
+                    "language": {
+                      "type": "string"
+                    },
+                    "wrapLines": {
+                      "type": "boolean"
+                    },
+                    "darkTheme": {
+                      "type": "boolean"
+                    },
+                    "fixedHeight": {
+                      "type": "boolean"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "content": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/new_node"
+                  }
+                },
+                "marks": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/mark"
+                  }
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "new_node_highlightBlock": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "highlightBlock"
+                },
+                "attrs": {
+                  "type": "object",
+                  "properties": {
+                    "titleEnabled": {
+                      "type": "boolean"
+                    },
+                    "emojiEnabled": {
+                      "type": "boolean"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "emoji": {
+                      "type": "string"
+                    },
+                    "borderColor": {
+                      "type": "string",
+                      "maxLength": 80,
+                      "pattern": "^(?:#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})|rgba?\\([\\d.%\\s,/]+\\)|[a-zA-Z]+)$"
+                    },
+                    "backgroundColor": {
+                      "type": "string",
+                      "maxLength": 80,
+                      "pattern": "^(?:#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})|rgba?\\([\\d.%\\s,/]+\\)|[a-zA-Z]+)$"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "content": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/new_node"
+                  }
+                },
+                "marks": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/mark"
+                  }
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "new_node_taskList": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "taskList"
+                },
+                "attrs": {
+                  "type": "object",
+                  "properties": {},
+                  "additionalProperties": false
+                },
+                "content": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/new_node"
+                  }
+                },
+                "marks": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/mark"
+                  }
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "new_node_taskItem": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "const": "taskItem"
+                },
+                "attrs": {
+                  "type": "object",
+                  "properties": {
+                    "checked": {
+                      "type": "boolean"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "content": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/new_node"
+                  }
+                },
+                "marks": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/mark"
+                  }
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "new_node": {
+              "oneOf": [
+                {
+                  "$ref": "#/$defs/new_node_paragraph"
+                },
+                {
+                  "$ref": "#/$defs/new_node_blockquote"
+                },
+                {
+                  "$ref": "#/$defs/new_node_bulletList"
+                },
+                {
+                  "$ref": "#/$defs/new_node_doc"
+                },
+                {
+                  "$ref": "#/$defs/new_node_hardBreak"
+                },
+                {
+                  "$ref": "#/$defs/new_node_heading"
+                },
+                {
+                  "$ref": "#/$defs/new_node_listItem"
+                },
+                {
+                  "$ref": "#/$defs/new_node_orderedList"
+                },
+                {
+                  "$ref": "#/$defs/new_node_text"
+                },
+                {
+                  "$ref": "#/$defs/new_node_table"
+                },
+                {
+                  "$ref": "#/$defs/new_node_tableRow"
+                },
+                {
+                  "$ref": "#/$defs/new_node_tableHeader"
+                },
+                {
+                  "$ref": "#/$defs/new_node_tableCell"
+                },
+                {
+                  "$ref": "#/$defs/new_node_horizontalRule"
+                },
+                {
+                  "$ref": "#/$defs/new_node_columnsBlock"
+                },
+                {
+                  "$ref": "#/$defs/new_node_columnsColumn"
+                },
+                {
+                  "$ref": "#/$defs/new_node_countdownBlock"
+                },
+                {
+                  "$ref": "#/$defs/new_node_formulaBlock"
+                },
+                {
+                  "$ref": "#/$defs/new_node_imageBlock"
+                },
+                {
+                  "$ref": "#/$defs/new_node_linkBlock"
+                },
+                {
+                  "$ref": "#/$defs/new_node_localFileBlock"
+                },
+                {
+                  "$ref": "#/$defs/new_node_mention"
+                },
+                {
+                  "$ref": "#/$defs/new_node_videoBlock"
+                },
+                {
+                  "$ref": "#/$defs/new_node_codeBlock"
+                },
+                {
+                  "$ref": "#/$defs/new_node_highlightBlock"
+                },
+                {
+                  "$ref": "#/$defs/new_node_taskList"
+                },
+                {
+                  "$ref": "#/$defs/new_node_taskItem"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "required": [
+        "document"
+      ],
+      "additionalProperties": false
+    },
+    "richtext_read_document": {
+      "type": "object",
+      "properties": {
+        "contextId": {
+          "type": "string"
+        },
+        "budget": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 12000
+        },
+        "cursor": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "contextId"
+      ],
+      "additionalProperties": false
+    },
+    "richtext_get_selection": {
+      "type": "object",
+      "properties": {
+        "contextId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "contextId"
+      ],
+      "additionalProperties": false
+    },
+    "richtext_read_target": {
+      "type": "object",
+      "properties": {
+        "contextId": {
+          "type": "string"
+        },
+        "targetRefs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "budget": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 12000
+        },
+        "cursor": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "contextId",
+        "targetRefs"
+      ],
+      "additionalProperties": false
+    },
+    "richtext_apply_patch": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "$id": "https://norio-office.github.io/rich-text/patch.schema.json",
+      "type": "object",
+      "required": [
+        "protocolVersion",
+        "documentId",
+        "requestId",
+        "contextId",
+        "baseRevision",
+        "operations"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "protocolVersion": {
+          "const": 1
+        },
+        "documentId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "contextId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "baseRevision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "operations": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 500,
+          "items": {
+            "$ref": "#/$defs/operation"
+          }
+        }
+      },
+      "$defs": {
+        "mark_link": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "link"
+            },
+            "attrs": {
+              "type": "object",
+              "properties": {
+                "href": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "target": {
+                  "type": "string"
+                },
+                "rel": {
+                  "type": "string"
+                },
+                "class": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "title": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        "mark_textStyle": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "textStyle"
+            },
+            "attrs": {
+              "type": "object",
+              "properties": {
+                "fontFamily": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "fontSize": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "pattern": "^\\d{1,3}px$"
+                },
+                "backgroundColor": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "maxLength": 80,
+                  "pattern": "^(?:#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})|rgba?\\([\\d.%\\s,/]+\\)|[a-zA-Z]+)$"
+                },
+                "color": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "maxLength": 80,
+                  "pattern": "^(?:#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})|rgba?\\([\\d.%\\s,/]+\\)|[a-zA-Z]+)$"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        "mark_bold": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "bold"
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        "mark_code": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "code"
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        "mark_italic": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "italic"
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        "mark_strike": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "strike"
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        "mark_commentMark": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "commentMark"
+            },
+            "attrs": {
+              "type": "object",
+              "properties": {
+                "threadId": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        "mark_superscript": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "superscript"
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        "mark_subscript": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "subscript"
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        "mark_underline": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "underline"
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        "node_paragraph": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "paragraph"
+            },
+            "attrs": {
+              "type": "object",
+              "properties": {
+                "aiId": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "indent": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 8
+                },
+                "textAlign": {
+                  "enum": [
+                    "left",
+                    "center",
+                    "right",
+                    null
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "content": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/node"
+              }
+            },
+            "marks": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/mark"
+              }
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        "node_blockquote": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "blockquote"
+            },
+            "attrs": {
+              "type": "object",
+              "properties": {
+                "aiId": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "quoteBorderColor": {
+                  "type": "string",
+                  "maxLength": 80,
+                  "pattern": "^(?:#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})|rgba?\\([\\d.%\\s,/]+\\)|[a-zA-Z]+)$"
+                },
+                "quoteBackgroundColor": {
+                  "type": "string",
+                  "maxLength": 80,
+                  "pattern": "^(?:#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})|rgba?\\([\\d.%\\s,/]+\\)|[a-zA-Z]+)$"
+                }
+              },
+              "additionalProperties": false
+            },
+            "content": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/node"
+              }
+            },
+            "marks": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/mark"
+              }
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        "node_bulletList": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "bulletList"
+            },
+            "attrs": {
+              "type": "object",
+              "properties": {
+                "aiId": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "content": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/node"
+              }
+            },
+            "marks": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/mark"
+              }
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        "node_doc": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "doc"
+            },
+            "content": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/node"
+              }
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        "node_hardBreak": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "hardBreak"
+            },
+            "marks": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/mark"
+              }
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        "node_heading": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "heading"
+            },
+            "attrs": {
+              "type": "object",
+              "properties": {
+                "aiId": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "indent": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 8
+                },
+                "textAlign": {
+                  "enum": [
+                    "left",
+                    "center",
+                    "right",
+                    null
+                  ]
+                },
+                "level": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 6
+                }
+              },
+              "additionalProperties": false
+            },
+            "content": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/node"
+              }
+            },
+            "marks": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/mark"
+              }
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        "node_listItem": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "listItem"
+            },
+            "attrs": {
+              "type": "object",
+              "properties": {
+                "aiId": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "content": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/node"
+              }
+            },
+            "marks": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/mark"
+              }
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        "node_orderedList": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "orderedList"
+            },
+            "attrs": {
+              "type": "object",
+              "properties": {
+                "aiId": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "start": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "type": {
+                  "enum": [
+                    "1",
+                    "a",
+                    "A",
+                    "i",
+                    "I",
+                    null
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "content": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/node"
+              }
+            },
+            "marks": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/mark"
+              }
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        "node_text": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "text"
+            },
+            "text": {
+              "type": "string",
+              "minLength": 1
+            },
+            "marks": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/mark"
+              }
+            }
+          },
+          "required": [
+            "type",
+            "text"
+          ],
+          "additionalProperties": false
+        },
+        "node_table": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "table"
+            },
+            "attrs": {
+              "type": "object",
+              "properties": {
+                "aiId": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "tableTheme": {
+                  "anyOf": [
+                    {
+                      "type": "null"
+                    },
+                    {
+                      "type": "object",
+                      "required": [
+                        "header",
+                        "odd",
+                        "even"
+                      ],
+                      "additionalProperties": false,
+                      "properties": {
+                        "header": {
+                          "type": "string",
+                          "pattern": "^#[0-9a-fA-F]{6}$"
+                        },
+                        "odd": {
+                          "type": "string",
+                          "pattern": "^#[0-9a-fA-F]{6}$"
+                        },
+                        "even": {
+                          "type": "string",
+                          "pattern": "^#[0-9a-fA-F]{6}$"
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "content": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/node"
+              }
+            },
+            "marks": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/mark"
+              }
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        "node_tableRow": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "tableRow"
+            },
+            "attrs": {
+              "type": "object",
+              "properties": {
+                "aiId": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "content": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/node"
+              }
+            },
+            "marks": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/mark"
+              }
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        "node_tableHeader": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "tableHeader"
+            },
+            "attrs": {
+              "type": "object",
+              "properties": {
+                "aiId": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "colspan": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "rowspan": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "colwidth": {
+                  "type": [
+                    "array",
+                    "null"
+                  ],
+                  "items": {
+                    "type": "integer",
+                    "minimum": 1
+                  },
+                  "minItems": 1
+                },
+                "align": {
+                  "enum": [
+                    "left",
+                    "center",
+                    "right",
+                    null
+                  ]
+                },
+                "backgroundColor": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "maxLength": 80,
+                  "pattern": "^(?:#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})|rgba?\\([\\d.%\\s,/]+\\)|[a-zA-Z]+)$"
+                }
+              },
+              "additionalProperties": false
+            },
+            "content": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/node"
+              }
+            },
+            "marks": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/mark"
+              }
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        "node_tableCell": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "tableCell"
+            },
+            "attrs": {
+              "type": "object",
+              "properties": {
+                "aiId": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "colspan": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "rowspan": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "colwidth": {
+                  "type": [
+                    "array",
+                    "null"
+                  ],
+                  "items": {
+                    "type": "integer",
+                    "minimum": 1
+                  },
+                  "minItems": 1
+                },
+                "align": {
+                  "enum": [
+                    "left",
+                    "center",
+                    "right",
+                    null
+                  ]
+                },
+                "backgroundColor": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "maxLength": 80,
+                  "pattern": "^(?:#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})|rgba?\\([\\d.%\\s,/]+\\)|[a-zA-Z]+)$"
+                }
+              },
+              "additionalProperties": false
+            },
+            "content": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/node"
+              }
+            },
+            "marks": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/mark"
+              }
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        "node_horizontalRule": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "horizontalRule"
+            },
+            "attrs": {
+              "type": "object",
+              "properties": {
+                "aiId": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "lineStyle": {
+                  "enum": [
+                    "solid",
+                    "dashed",
+                    "dotted"
+                  ]
+                },
+                "lineColor": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "maxLength": 80,
+                  "pattern": "^(?:#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})|rgba?\\([\\d.%\\s,/]+\\)|[a-zA-Z]+)$"
+                }
+              },
+              "additionalProperties": false
+            },
+            "marks": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/mark"
+              }
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        "node_columnsBlock": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "columnsBlock"
+            },
+            "attrs": {
+              "type": "object",
+              "properties": {
+                "aiId": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "widths": {
+                  "type": "array",
+                  "items": {
+                    "type": "number",
+                    "exclusiveMinimum": 0
+                  }
+                }
+              },
+              "additionalProperties": false
+            },
+            "content": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/node"
+              }
+            },
+            "marks": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/mark"
+              }
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        "node_columnsColumn": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "columnsColumn"
+            },
+            "attrs": {
+              "type": "object",
+              "properties": {
+                "aiId": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "content": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/node"
+              }
+            },
+            "marks": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/mark"
+              }
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        "node_countdownBlock": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "countdownBlock"
+            },
+            "attrs": {
+              "type": "object",
+              "properties": {
+                "aiId": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "targetTimestamp": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "mode": {
+                  "type": "string"
+                },
+                "color": {
+                  "type": "string",
+                  "maxLength": 80,
+                  "pattern": "^(?:#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})|rgba?\\([\\d.%\\s,/]+\\)|[a-zA-Z]+)$"
+                },
+                "reminderEnabled": {
+                  "type": "boolean"
+                }
+              },
+              "additionalProperties": false
+            },
+            "marks": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/mark"
+              }
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        "node_formulaBlock": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "formulaBlock"
+            },
+            "attrs": {
+              "type": "object",
+              "properties": {
+                "aiId": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "latex": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            },
+            "marks": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/mark"
+              }
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        "node_imageBlock": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "imageBlock"
+            },
+            "attrs": {
+              "type": "object",
+              "properties": {
+                "aiId": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "images": {
+                  "type": "array",
+                  "maxItems": 4,
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "assetId": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "src": {
+                        "type": "string"
+                      },
+                      "alt": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "descriptionVisible": {
+                        "type": "boolean"
+                      },
+                      "link": {
+                        "type": "string"
+                      },
+                      "linkTarget": {
+                        "enum": [
+                          "_blank",
+                          "_self"
+                        ]
+                      },
+                      "rotation": {
+                        "type": "number"
+                      }
+                    }
+                  }
+                },
+                "widthPercent": {
+                  "type": "number",
+                  "exclusiveMinimum": 0,
+                  "maximum": 100
+                },
+                "align": {
+                  "enum": [
+                    "left",
+                    "center",
+                    "right"
+                  ]
+                },
+                "height": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "additionalProperties": false
+            },
+            "marks": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/mark"
+              }
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        "node_linkBlock": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "linkBlock"
+            },
+            "attrs": {
+              "type": "object",
+              "properties": {
+                "aiId": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "title": {
+                  "type": "string"
+                },
+                "url": {
+                  "type": "string"
+                },
+                "displayMode": {
+                  "enum": [
+                    "text",
+                    "card",
+                    "preview"
+                  ]
+                },
+                "align": {
+                  "enum": [
+                    "left",
+                    "center",
+                    "right"
+                  ]
+                },
+                "widthPercent": {
+                  "type": "number",
+                  "exclusiveMinimum": 0,
+                  "maximum": 100
+                },
+                "height": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "additionalProperties": false
+            },
+            "marks": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/mark"
+              }
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        "node_localFileBlock": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "localFileBlock"
+            },
+            "attrs": {
+              "type": "object",
+              "properties": {
+                "aiId": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "assetId": {
+                  "type": "string"
+                },
+                "url": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "size": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "mimeType": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            },
+            "marks": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/mark"
+              }
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        "node_mention": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "mention"
+            },
+            "attrs": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "number"
+                },
+                "avatar": {
+                  "type": "string"
+                },
+                "icon": {
+                  "type": "string"
+                },
+                "tag": {
+                  "type": "string"
+                },
+                "updatedAt": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            },
+            "marks": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/mark"
+              }
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        "node_videoBlock": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "videoBlock"
+            },
+            "attrs": {
+              "type": "object",
+              "properties": {
+                "aiId": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "assetId": {
+                  "type": "string"
+                },
+                "src": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "mimeType": {
+                  "type": "string"
+                },
+                "align": {
+                  "enum": [
+                    "left",
+                    "center",
+                    "right"
+                  ]
+                },
+                "widthPercent": {
+                  "type": "number",
+                  "exclusiveMinimum": 0,
+                  "maximum": 100
+                },
+                "height": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "additionalProperties": false
+            },
+            "marks": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/mark"
+              }
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        "node_codeBlock": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "codeBlock"
+            },
+            "attrs": {
+              "type": "object",
+              "properties": {
+                "aiId": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "language": {
+                  "type": "string"
+                },
+                "wrapLines": {
+                  "type": "boolean"
+                },
+                "darkTheme": {
+                  "type": "boolean"
+                },
+                "fixedHeight": {
+                  "type": "boolean"
+                }
+              },
+              "additionalProperties": false
+            },
+            "content": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/node"
+              }
+            },
+            "marks": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/mark"
+              }
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        "node_highlightBlock": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "highlightBlock"
+            },
+            "attrs": {
+              "type": "object",
+              "properties": {
+                "aiId": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "titleEnabled": {
+                  "type": "boolean"
+                },
+                "emojiEnabled": {
+                  "type": "boolean"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "emoji": {
+                  "type": "string"
+                },
+                "borderColor": {
+                  "type": "string",
+                  "maxLength": 80,
+                  "pattern": "^(?:#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})|rgba?\\([\\d.%\\s,/]+\\)|[a-zA-Z]+)$"
+                },
+                "backgroundColor": {
+                  "type": "string",
+                  "maxLength": 80,
+                  "pattern": "^(?:#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})|rgba?\\([\\d.%\\s,/]+\\)|[a-zA-Z]+)$"
+                }
+              },
+              "additionalProperties": false
+            },
+            "content": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/node"
+              }
+            },
+            "marks": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/mark"
+              }
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        "node_taskList": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "taskList"
+            },
+            "attrs": {
+              "type": "object",
+              "properties": {
+                "aiId": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "content": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/node"
+              }
+            },
+            "marks": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/mark"
+              }
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        "node_taskItem": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "taskItem"
+            },
+            "attrs": {
+              "type": "object",
+              "properties": {
+                "aiId": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "checked": {
+                  "type": "boolean"
+                }
+              },
+              "additionalProperties": false
+            },
+            "content": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/node"
+              }
+            },
+            "marks": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/mark"
+              }
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        "node": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/node_paragraph"
+            },
+            {
+              "$ref": "#/$defs/node_blockquote"
+            },
+            {
+              "$ref": "#/$defs/node_bulletList"
+            },
+            {
+              "$ref": "#/$defs/node_doc"
+            },
+            {
+              "$ref": "#/$defs/node_hardBreak"
+            },
+            {
+              "$ref": "#/$defs/node_heading"
+            },
+            {
+              "$ref": "#/$defs/node_listItem"
+            },
+            {
+              "$ref": "#/$defs/node_orderedList"
+            },
+            {
+              "$ref": "#/$defs/node_text"
+            },
+            {
+              "$ref": "#/$defs/node_table"
+            },
+            {
+              "$ref": "#/$defs/node_tableRow"
+            },
+            {
+              "$ref": "#/$defs/node_tableHeader"
+            },
+            {
+              "$ref": "#/$defs/node_tableCell"
+            },
+            {
+              "$ref": "#/$defs/node_horizontalRule"
+            },
+            {
+              "$ref": "#/$defs/node_columnsBlock"
+            },
+            {
+              "$ref": "#/$defs/node_columnsColumn"
+            },
+            {
+              "$ref": "#/$defs/node_countdownBlock"
+            },
+            {
+              "$ref": "#/$defs/node_formulaBlock"
+            },
+            {
+              "$ref": "#/$defs/node_imageBlock"
+            },
+            {
+              "$ref": "#/$defs/node_linkBlock"
+            },
+            {
+              "$ref": "#/$defs/node_localFileBlock"
+            },
+            {
+              "$ref": "#/$defs/node_mention"
+            },
+            {
+              "$ref": "#/$defs/node_videoBlock"
+            },
+            {
+              "$ref": "#/$defs/node_codeBlock"
+            },
+            {
+              "$ref": "#/$defs/node_highlightBlock"
+            },
+            {
+              "$ref": "#/$defs/node_taskList"
+            },
+            {
+              "$ref": "#/$defs/node_taskItem"
+            }
+          ]
+        },
+        "mark": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/mark_link"
+            },
+            {
+              "$ref": "#/$defs/mark_textStyle"
+            },
+            {
+              "$ref": "#/$defs/mark_bold"
+            },
+            {
+              "$ref": "#/$defs/mark_code"
+            },
+            {
+              "$ref": "#/$defs/mark_italic"
+            },
+            {
+              "$ref": "#/$defs/mark_strike"
+            },
+            {
+              "$ref": "#/$defs/mark_commentMark"
+            },
+            {
+              "$ref": "#/$defs/mark_superscript"
+            },
+            {
+              "$ref": "#/$defs/mark_subscript"
+            },
+            {
+              "$ref": "#/$defs/mark_underline"
+            }
+          ]
+        },
+        "new_node_paragraph": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "paragraph"
+            },
+            "attrs": {
+              "type": "object",
+              "properties": {
+                "indent": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 8
+                },
+                "textAlign": {
+                  "enum": [
+                    "left",
+                    "center",
+                    "right",
+                    null
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "content": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/new_node"
+              }
+            },
+            "marks": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/mark"
+              }
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        "new_node_blockquote": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "blockquote"
+            },
+            "attrs": {
+              "type": "object",
+              "properties": {
+                "quoteBorderColor": {
+                  "type": "string",
+                  "maxLength": 80,
+                  "pattern": "^(?:#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})|rgba?\\([\\d.%\\s,/]+\\)|[a-zA-Z]+)$"
+                },
+                "quoteBackgroundColor": {
+                  "type": "string",
+                  "maxLength": 80,
+                  "pattern": "^(?:#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})|rgba?\\([\\d.%\\s,/]+\\)|[a-zA-Z]+)$"
+                }
+              },
+              "additionalProperties": false
+            },
+            "content": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/new_node"
+              }
+            },
+            "marks": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/mark"
+              }
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        "new_node_bulletList": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "bulletList"
+            },
+            "attrs": {
+              "type": "object",
+              "properties": {},
+              "additionalProperties": false
+            },
+            "content": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/new_node"
+              }
+            },
+            "marks": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/mark"
+              }
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        "new_node_doc": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "doc"
+            },
+            "content": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/new_node"
+              }
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        "new_node_hardBreak": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "hardBreak"
+            },
+            "marks": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/mark"
+              }
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        "new_node_heading": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "heading"
+            },
+            "attrs": {
+              "type": "object",
+              "properties": {
+                "indent": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 8
+                },
+                "textAlign": {
+                  "enum": [
+                    "left",
+                    "center",
+                    "right",
+                    null
+                  ]
+                },
+                "level": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 6
+                }
+              },
+              "additionalProperties": false
+            },
+            "content": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/new_node"
+              }
+            },
+            "marks": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/mark"
+              }
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        "new_node_listItem": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "listItem"
+            },
+            "attrs": {
+              "type": "object",
+              "properties": {},
+              "additionalProperties": false
+            },
+            "content": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/new_node"
+              }
+            },
+            "marks": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/mark"
+              }
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        "new_node_orderedList": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "orderedList"
+            },
+            "attrs": {
+              "type": "object",
+              "properties": {
+                "start": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "type": {
+                  "enum": [
+                    "1",
+                    "a",
+                    "A",
+                    "i",
+                    "I",
+                    null
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "content": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/new_node"
+              }
+            },
+            "marks": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/mark"
+              }
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        "new_node_text": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "text"
+            },
+            "text": {
+              "type": "string",
+              "minLength": 1
+            },
+            "marks": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/mark"
+              }
+            }
+          },
+          "required": [
+            "type",
+            "text"
+          ],
+          "additionalProperties": false
+        },
+        "new_node_table": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "table"
+            },
+            "attrs": {
+              "type": "object",
+              "properties": {
+                "tableTheme": {
+                  "anyOf": [
+                    {
+                      "type": "null"
+                    },
+                    {
+                      "type": "object",
+                      "required": [
+                        "header",
+                        "odd",
+                        "even"
+                      ],
+                      "additionalProperties": false,
+                      "properties": {
+                        "header": {
+                          "type": "string",
+                          "pattern": "^#[0-9a-fA-F]{6}$"
+                        },
+                        "odd": {
+                          "type": "string",
+                          "pattern": "^#[0-9a-fA-F]{6}$"
+                        },
+                        "even": {
+                          "type": "string",
+                          "pattern": "^#[0-9a-fA-F]{6}$"
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "content": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/new_node"
+              }
+            },
+            "marks": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/mark"
+              }
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        "new_node_tableRow": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "tableRow"
+            },
+            "attrs": {
+              "type": "object",
+              "properties": {},
+              "additionalProperties": false
+            },
+            "content": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/new_node"
+              }
+            },
+            "marks": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/mark"
+              }
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        "new_node_tableHeader": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "tableHeader"
+            },
+            "attrs": {
+              "type": "object",
+              "properties": {
+                "colspan": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "rowspan": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "colwidth": {
+                  "type": [
+                    "array",
+                    "null"
+                  ],
+                  "items": {
+                    "type": "integer",
+                    "minimum": 1
+                  },
+                  "minItems": 1
+                },
+                "align": {
+                  "enum": [
+                    "left",
+                    "center",
+                    "right",
+                    null
+                  ]
+                },
+                "backgroundColor": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "maxLength": 80,
+                  "pattern": "^(?:#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})|rgba?\\([\\d.%\\s,/]+\\)|[a-zA-Z]+)$"
+                }
+              },
+              "additionalProperties": false
+            },
+            "content": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/new_node"
+              }
+            },
+            "marks": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/mark"
+              }
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        "new_node_tableCell": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "tableCell"
+            },
+            "attrs": {
+              "type": "object",
+              "properties": {
+                "colspan": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "rowspan": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "colwidth": {
+                  "type": [
+                    "array",
+                    "null"
+                  ],
+                  "items": {
+                    "type": "integer",
+                    "minimum": 1
+                  },
+                  "minItems": 1
+                },
+                "align": {
+                  "enum": [
+                    "left",
+                    "center",
+                    "right",
+                    null
+                  ]
+                },
+                "backgroundColor": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "maxLength": 80,
+                  "pattern": "^(?:#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})|rgba?\\([\\d.%\\s,/]+\\)|[a-zA-Z]+)$"
+                }
+              },
+              "additionalProperties": false
+            },
+            "content": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/new_node"
+              }
+            },
+            "marks": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/mark"
+              }
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        "new_node_horizontalRule": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "horizontalRule"
+            },
+            "attrs": {
+              "type": "object",
+              "properties": {
+                "lineStyle": {
+                  "enum": [
+                    "solid",
+                    "dashed",
+                    "dotted"
+                  ]
+                },
+                "lineColor": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "maxLength": 80,
+                  "pattern": "^(?:#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})|rgba?\\([\\d.%\\s,/]+\\)|[a-zA-Z]+)$"
+                }
+              },
+              "additionalProperties": false
+            },
+            "marks": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/mark"
+              }
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        "new_node_columnsBlock": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "columnsBlock"
+            },
+            "attrs": {
+              "type": "object",
+              "properties": {
+                "widths": {
+                  "type": "array",
+                  "items": {
+                    "type": "number",
+                    "exclusiveMinimum": 0
+                  }
+                }
+              },
+              "additionalProperties": false
+            },
+            "content": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/new_node"
+              }
+            },
+            "marks": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/mark"
+              }
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        "new_node_columnsColumn": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "columnsColumn"
+            },
+            "attrs": {
+              "type": "object",
+              "properties": {},
+              "additionalProperties": false
+            },
+            "content": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/new_node"
+              }
+            },
+            "marks": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/mark"
+              }
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        "new_node_countdownBlock": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "countdownBlock"
+            },
+            "attrs": {
+              "type": "object",
+              "properties": {
+                "targetTimestamp": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "mode": {
+                  "type": "string"
+                },
+                "color": {
+                  "type": "string",
+                  "maxLength": 80,
+                  "pattern": "^(?:#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})|rgba?\\([\\d.%\\s,/]+\\)|[a-zA-Z]+)$"
+                },
+                "reminderEnabled": {
+                  "type": "boolean"
+                }
+              },
+              "additionalProperties": false
+            },
+            "marks": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/mark"
+              }
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        "new_node_formulaBlock": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "formulaBlock"
+            },
+            "attrs": {
+              "type": "object",
+              "properties": {
+                "latex": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            },
+            "marks": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/mark"
+              }
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        "new_node_imageBlock": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "imageBlock"
+            },
+            "attrs": {
+              "type": "object",
+              "properties": {
+                "images": {
+                  "type": "array",
+                  "maxItems": 4,
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "assetId": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "src": {
+                        "type": "string"
+                      },
+                      "alt": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "descriptionVisible": {
+                        "type": "boolean"
+                      },
+                      "link": {
+                        "type": "string"
+                      },
+                      "linkTarget": {
+                        "enum": [
+                          "_blank",
+                          "_self"
+                        ]
+                      },
+                      "rotation": {
+                        "type": "number"
+                      }
+                    }
+                  }
+                },
+                "widthPercent": {
+                  "type": "number",
+                  "exclusiveMinimum": 0,
+                  "maximum": 100
+                },
+                "align": {
+                  "enum": [
+                    "left",
+                    "center",
+                    "right"
+                  ]
+                },
+                "height": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "additionalProperties": false
+            },
+            "marks": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/mark"
+              }
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        "new_node_linkBlock": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "linkBlock"
+            },
+            "attrs": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "url": {
+                  "type": "string"
+                },
+                "displayMode": {
+                  "enum": [
+                    "text",
+                    "card",
+                    "preview"
+                  ]
+                },
+                "align": {
+                  "enum": [
+                    "left",
+                    "center",
+                    "right"
+                  ]
+                },
+                "widthPercent": {
+                  "type": "number",
+                  "exclusiveMinimum": 0,
+                  "maximum": 100
+                },
+                "height": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "additionalProperties": false
+            },
+            "marks": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/mark"
+              }
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        "new_node_localFileBlock": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "localFileBlock"
+            },
+            "attrs": {
+              "type": "object",
+              "properties": {
+                "assetId": {
+                  "type": "string"
+                },
+                "url": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "size": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "mimeType": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            },
+            "marks": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/mark"
+              }
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        "new_node_mention": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "mention"
+            },
+            "attrs": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "number"
+                },
+                "avatar": {
+                  "type": "string"
+                },
+                "icon": {
+                  "type": "string"
+                },
+                "tag": {
+                  "type": "string"
+                },
+                "updatedAt": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            },
+            "marks": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/mark"
+              }
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        "new_node_videoBlock": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "videoBlock"
+            },
+            "attrs": {
+              "type": "object",
+              "properties": {
+                "assetId": {
+                  "type": "string"
+                },
+                "src": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "mimeType": {
+                  "type": "string"
+                },
+                "align": {
+                  "enum": [
+                    "left",
+                    "center",
+                    "right"
+                  ]
+                },
+                "widthPercent": {
+                  "type": "number",
+                  "exclusiveMinimum": 0,
+                  "maximum": 100
+                },
+                "height": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "additionalProperties": false
+            },
+            "marks": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/mark"
+              }
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        "new_node_codeBlock": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "codeBlock"
+            },
+            "attrs": {
+              "type": "object",
+              "properties": {
+                "language": {
+                  "type": "string"
+                },
+                "wrapLines": {
+                  "type": "boolean"
+                },
+                "darkTheme": {
+                  "type": "boolean"
+                },
+                "fixedHeight": {
+                  "type": "boolean"
+                }
+              },
+              "additionalProperties": false
+            },
+            "content": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/new_node"
+              }
+            },
+            "marks": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/mark"
+              }
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        "new_node_highlightBlock": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "highlightBlock"
+            },
+            "attrs": {
+              "type": "object",
+              "properties": {
+                "titleEnabled": {
+                  "type": "boolean"
+                },
+                "emojiEnabled": {
+                  "type": "boolean"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "emoji": {
+                  "type": "string"
+                },
+                "borderColor": {
+                  "type": "string",
+                  "maxLength": 80,
+                  "pattern": "^(?:#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})|rgba?\\([\\d.%\\s,/]+\\)|[a-zA-Z]+)$"
+                },
+                "backgroundColor": {
+                  "type": "string",
+                  "maxLength": 80,
+                  "pattern": "^(?:#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})|rgba?\\([\\d.%\\s,/]+\\)|[a-zA-Z]+)$"
+                }
+              },
+              "additionalProperties": false
+            },
+            "content": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/new_node"
+              }
+            },
+            "marks": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/mark"
+              }
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        "new_node_taskList": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "taskList"
+            },
+            "attrs": {
+              "type": "object",
+              "properties": {},
+              "additionalProperties": false
+            },
+            "content": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/new_node"
+              }
+            },
+            "marks": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/mark"
+              }
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        "new_node_taskItem": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "taskItem"
+            },
+            "attrs": {
+              "type": "object",
+              "properties": {
+                "checked": {
+                  "type": "boolean"
+                }
+              },
+              "additionalProperties": false
+            },
+            "content": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/new_node"
+              }
+            },
+            "marks": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/mark"
+              }
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        "new_node": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/new_node_paragraph"
+            },
+            {
+              "$ref": "#/$defs/new_node_blockquote"
+            },
+            {
+              "$ref": "#/$defs/new_node_bulletList"
+            },
+            {
+              "$ref": "#/$defs/new_node_doc"
+            },
+            {
+              "$ref": "#/$defs/new_node_hardBreak"
+            },
+            {
+              "$ref": "#/$defs/new_node_heading"
+            },
+            {
+              "$ref": "#/$defs/new_node_listItem"
+            },
+            {
+              "$ref": "#/$defs/new_node_orderedList"
+            },
+            {
+              "$ref": "#/$defs/new_node_text"
+            },
+            {
+              "$ref": "#/$defs/new_node_table"
+            },
+            {
+              "$ref": "#/$defs/new_node_tableRow"
+            },
+            {
+              "$ref": "#/$defs/new_node_tableHeader"
+            },
+            {
+              "$ref": "#/$defs/new_node_tableCell"
+            },
+            {
+              "$ref": "#/$defs/new_node_horizontalRule"
+            },
+            {
+              "$ref": "#/$defs/new_node_columnsBlock"
+            },
+            {
+              "$ref": "#/$defs/new_node_columnsColumn"
+            },
+            {
+              "$ref": "#/$defs/new_node_countdownBlock"
+            },
+            {
+              "$ref": "#/$defs/new_node_formulaBlock"
+            },
+            {
+              "$ref": "#/$defs/new_node_imageBlock"
+            },
+            {
+              "$ref": "#/$defs/new_node_linkBlock"
+            },
+            {
+              "$ref": "#/$defs/new_node_localFileBlock"
+            },
+            {
+              "$ref": "#/$defs/new_node_mention"
+            },
+            {
+              "$ref": "#/$defs/new_node_videoBlock"
+            },
+            {
+              "$ref": "#/$defs/new_node_codeBlock"
+            },
+            {
+              "$ref": "#/$defs/new_node_highlightBlock"
+            },
+            {
+              "$ref": "#/$defs/new_node_taskList"
+            },
+            {
+              "$ref": "#/$defs/new_node_taskItem"
+            }
+          ]
+        },
+        "operation_insertContent": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "type",
+            "targetRef",
+            "position",
+            "content"
+          ],
+          "properties": {
+            "type": {
+              "const": "insertContent"
+            },
+            "targetRef": {
+              "type": "string",
+              "minLength": 1
+            },
+            "position": {
+              "enum": [
+                "at",
+                "before",
+                "after"
+              ]
+            },
+            "content": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/new_node"
+              }
+            }
+          }
+        },
+        "operation_replaceText": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "type",
+            "targetRef",
+            "text"
+          ],
+          "properties": {
+            "type": {
+              "const": "replaceText"
+            },
+            "targetRef": {
+              "type": "string",
+              "minLength": 1
+            },
+            "text": {
+              "type": "string"
+            }
+          }
+        },
+        "operation_replaceFragment": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "type",
+            "targetRef",
+            "content"
+          ],
+          "properties": {
+            "type": {
+              "const": "replaceFragment"
+            },
+            "targetRef": {
+              "type": "string",
+              "minLength": 1
+            },
+            "content": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/new_node"
+              }
+            }
+          }
+        },
+        "operation_setMarks": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "type",
+            "targetRef",
+            "marks"
+          ],
+          "properties": {
+            "type": {
+              "const": "setMarks"
+            },
+            "targetRef": {
+              "type": "string",
+              "minLength": 1
+            },
+            "marks": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/mark"
+              }
+            }
+          }
+        },
+        "operation_unsetMarks": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "type",
+            "targetRef",
+            "markTypes"
+          ],
+          "properties": {
+            "type": {
+              "const": "unsetMarks"
+            },
+            "targetRef": {
+              "type": "string",
+              "minLength": 1
+            },
+            "markTypes": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        "operation_setNodeAttributes": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "type",
+            "targetRef",
+            "nodeType",
+            "attrs"
+          ],
+          "properties": {
+            "type": {
+              "const": "setNodeAttributes"
+            },
+            "targetRef": {
+              "type": "string",
+              "minLength": 1
+            },
+            "nodeType": {
+              "type": "string"
+            },
+            "attrs": {
+              "type": "object",
+              "not": {
+                "required": [
+                  "aiId"
+                ]
+              }
+            }
+          }
+        },
+        "operation_unsetNodeAttributes": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "type",
+            "targetRef",
+            "nodeType",
+            "attributes"
+          ],
+          "properties": {
+            "type": {
+              "const": "unsetNodeAttributes"
+            },
+            "targetRef": {
+              "type": "string",
+              "minLength": 1
+            },
+            "nodeType": {
+              "type": "string"
+            },
+            "attributes": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "not": {
+                  "const": "aiId"
+                }
+              }
+            }
+          }
+        },
+        "operation_deleteContent": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "type",
+            "targetRef"
+          ],
+          "properties": {
+            "type": {
+              "const": "deleteContent"
+            },
+            "targetRef": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "operation_moveBlocks": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "type",
+            "targetRef",
+            "destinationRef",
+            "position"
+          ],
+          "properties": {
+            "type": {
+              "const": "moveBlocks"
+            },
+            "targetRef": {
+              "type": "string",
+              "minLength": 1
+            },
+            "destinationRef": {
+              "type": "string",
+              "minLength": 1
+            },
+            "position": {
+              "enum": [
+                "before",
+                "after"
+              ]
+            }
+          }
+        },
+        "operation_transformBlocks": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "type",
+            "targetRef",
+            "nodeType"
+          ],
+          "properties": {
+            "type": {
+              "const": "transformBlocks"
+            },
+            "targetRef": {
+              "type": "string",
+              "minLength": 1
+            },
+            "nodeType": {
+              "type": "string"
+            },
+            "attrs": {
+              "type": "object",
+              "not": {
+                "required": [
+                  "aiId"
+                ]
+              }
+            }
+          }
+        },
+        "operation_tableOperation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "type",
+            "targetRef",
+            "action"
+          ],
+          "properties": {
+            "type": {
+              "const": "tableOperation"
+            },
+            "targetRef": {
+              "type": "string",
+              "minLength": 1
+            },
+            "action": {
+              "enum": [
+                "insertRowBefore",
+                "insertRowAfter",
+                "deleteRow",
+                "insertColumnBefore",
+                "insertColumnAfter",
+                "deleteColumn",
+                "mergeCells",
+                "splitCell",
+                "setCellContent",
+                "setCellBackground",
+                "setTableTheme"
+              ]
+            },
+            "content": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/new_node"
+              }
+            },
+            "value": {}
+          }
+        },
+        "operation": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/operation_insertContent"
+            },
+            {
+              "$ref": "#/$defs/operation_replaceText"
+            },
+            {
+              "$ref": "#/$defs/operation_replaceFragment"
+            },
+            {
+              "$ref": "#/$defs/operation_setMarks"
+            },
+            {
+              "$ref": "#/$defs/operation_unsetMarks"
+            },
+            {
+              "$ref": "#/$defs/operation_setNodeAttributes"
+            },
+            {
+              "$ref": "#/$defs/operation_unsetNodeAttributes"
+            },
+            {
+              "$ref": "#/$defs/operation_deleteContent"
+            },
+            {
+              "$ref": "#/$defs/operation_moveBlocks"
+            },
+            {
+              "$ref": "#/$defs/operation_transformBlocks"
+            },
+            {
+              "$ref": "#/$defs/operation_tableOperation"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

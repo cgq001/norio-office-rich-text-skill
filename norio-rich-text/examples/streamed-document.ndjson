@@ -1,0 +1,9 @@
+{"protocolVersion":1,"streamId":"example-stream","seq":1,"type":"node.open","payload":{"nodeRef":"heading-1","nodeType":"heading","attrs":{"level":1}}}
+{"protocolVersion":1,"streamId":"example-stream","seq":2,"type":"text.delta","payload":{"nodeRef":"heading-1","text":"Streaming "}}
+{"protocolVersion":1,"streamId":"example-stream","seq":3,"type":"text.delta","payload":{"nodeRef":"heading-1","text":"Document"}}
+{"protocolVersion":1,"streamId":"example-stream","seq":4,"type":"node.close","payload":{"nodeRef":"heading-1"}}
+{"protocolVersion":1,"streamId":"example-stream","seq":5,"type":"node.open","payload":{"nodeRef":"p-1","nodeType":"paragraph"}}
+{"protocolVersion":1,"streamId":"example-stream","seq":6,"type":"text.delta","payload":{"nodeRef":"p-1","text":"First live phrase, "}}
+{"protocolVersion":1,"streamId":"example-stream","seq":7,"type":"text.delta","payload":{"nodeRef":"p-1","text":"then the next phrase."}}
+{"protocolVersion":1,"streamId":"example-stream","seq":8,"type":"node.close","payload":{"nodeRef":"p-1"}}
+{"protocolVersion":1,"streamId":"example-stream","seq":9,"type":"stream.end","payload":{}}

@@ -1,0 +1,10 @@
+{
+  "type": "doc",
+  "content": [
+    { "type": "heading", "attrs": { "level": 2 }, "content": [{ "type": "text", "text": "Status" }] },
+    { "type": "paragraph", "content": [
+      { "type": "text", "text": "Important", "marks": [{ "type": "bold" }, { "type": "textStyle", "attrs": { "color": "#d92d20", "backgroundColor": "#fff3bf" } }] },
+      { "type": "text", "text": " details follow." }
+    ] }
+  ]
+}

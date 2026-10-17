@@ -1,0 +1,10 @@
+{
+  "protocolVersion": 1,
+  "documentId": "host-document-id",
+  "requestId": "host-request-id",
+  "contextId": "host-context-id",
+  "baseRevision": 0,
+  "operations": [
+    { "type": "replaceText", "targetRef": "host-selection-ref", "text": "Revised sentence" }
+  ]
+}
